@@ -2,7 +2,7 @@
 import PageHead from './PageHead.astro';
 import { ui, type Lang } from '../i18n/ui';
 import { pages } from '../i18n/pages';
-import { projects, partners, tools, researchLines, tr } from '../data/content';
+import { projects, partners, networks, funding, tools, researchLines, tr } from '../data/content';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const p = pages[lang].projects;
@@ -20,7 +20,7 @@ const p = pages[lang].projects;
           <span class="tag">{p[x.status]}</span>
           <h3>{tr(x.title, lang)}</h3>
           <p class="muted">{tr(x.summary, lang)}</p>
-          {x.partners.length > 0 && <p class="small">{x.partners.join(' · ')}</p>}
+          {x.href && <p class="small"><a href={x.href} rel="noopener">{p.visit} →</a></p>}
         </article>
       ))}
     </div>
@@ -29,7 +29,11 @@ const p = pages[lang].projects;
 <section class="section alt">
   <div class="wrap">
     <h2>{p.partnersTitle}</h2>
-    <div class="grid cols-3">{partners.map((n) => <div class="card logo">{n}</div>)}</div>
+    <p>{partners.map((n) => <span class="tag">{n}</span>)}</p>
+    <h2 class="sub">{p.networksTitle}</h2>
+    <ul>{networks.map((n) => <li><a href={n.href} rel="noopener">{n.name}</a></li>)}</ul>
+    <h2 class="sub">{p.fundingTitle}</h2>
+    <p>{funding.map((n) => <span class="tag">{n}</span>)}</p>
   </div>
 </section>
 <section class="section">
@@ -40,7 +44,7 @@ const p = pages[lang].projects;
         <article class="card">
           <h3 class="mono">{t.name}</h3>
           <p class="muted">{tr(t.description, lang)}</p>
-          <span class="tag">{p.license}: {t.license}</span>
+          <p class="small"><a href={t.href} rel="noopener">GitHub →</a></p>
         </article>
       ))}
     </div>
@@ -52,6 +56,8 @@ const p = pages[lang].projects;
   .chip.on, .chip:hover { background: var(--brand); color: #fff; }
   .small { font-size: .9rem; color: var(--ink-soft); }
   .mono { font-family: var(--font-mono); font-size: 1rem; }
+  .sub { margin-top: 2rem; }
+  .tag { margin: 0 .35rem .35rem 0; }
   .logo { display: grid; place-items: center; min-height: 90px; color: var(--ink-soft); }
 </style>
 <script is:inline>

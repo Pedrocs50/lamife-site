@@ -5,8 +5,8 @@ Cada tipo de conteúdo vira um arquivo de dados (Markdown com cabeçalho YAML, o
 ## Regras gerais
 
 - Inglês é obrigatório em todo campo de texto. Português é opcional, e o site mostra o inglês quando faltar a tradução.
-- Dados de pessoas reais (nome, foto, contatos) só entram com a concordância da própria pessoa. Enquanto isso, usar placeholders.
-- Textos copiados da página do LAMIFE no gov.br não devem ser reaproveitados, porque a licença do portal não permite derivações. Os textos finais vêm do professor.
+- Nome, função e unidade de quem já aparece nas páginas públicas do INPE podem entrar. Foto, contatos e links pessoais só entram com a concordância da própria pessoa.
+- Textos copiados ou traduzidos da página do LAMIFE no gov.br não devem ser reaproveitados, porque a licença do portal (CC BY-ND 3.0) não permite derivações. Os textos são escritos a partir dos fatos e revisados pelo professor.
 
 ## Tipos
 

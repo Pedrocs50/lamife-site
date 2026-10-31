@@ -2,7 +2,8 @@
 import PageHead from './PageHead.astro';
 import { ui, type Lang } from '../i18n/ui';
 import { pages } from '../i18n/pages';
-import { team, tr } from '../data/content';
+import { team } from '../data/content';
+const initials = (n: string) => { const w = n.split(' ').filter((x) => /^[A-ZÀ-Ú]/.test(x)); return ((w[0]?.[0] ?? '') + (w.length > 1 ? w[w.length - 1][0] : '')).toUpperCase(); };
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const p = pages[lang].team;
@@ -16,9 +17,9 @@ const groups = Object.entries(p.roles).map(([role, label]) => ({ role, label, pe
       <div class="grid cols-4">
         {g.people.map((m) => (
           <article class="card person reveal">
-            <div class="avatar" aria-hidden="true">?</div>
+            <div class="avatar" aria-hidden="true">{initials(m.name)}</div>
             <h3>{m.name}</h3>
-            <p class="muted">{tr(m.topic, lang)}</p>
+            <p class="muted">{m.unit}</p>
           </article>
         ))}
       </div>

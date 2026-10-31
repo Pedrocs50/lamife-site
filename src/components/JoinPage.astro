@@ -2,7 +2,7 @@
 import PageHead from './PageHead.astro';
 import { ui, type Lang } from '../i18n/ui';
 import { pages } from '../i18n/pages';
-import { opportunities, tr } from '../data/content';
+import { opportunities, capHref, tr } from '../data/content';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const p = pages[lang].join;
@@ -10,7 +10,7 @@ const p = pages[lang].join;
 <PageHead title={p.title} lead={p.lead} eyebrow={ui[lang].labName} />
 <section class="section">
   <div class="wrap">
-    <div class="grid cols-3">
+    <div class="grid cols-4">
       {opportunities.map((o) => (
         <article class="card reveal">
           <h3>{p.levels[o.level as keyof typeof p.levels]}</h3>
@@ -21,7 +21,7 @@ const p = pages[lang].join;
   </div>
 </section>
 <section class="section alt">
-  <div class="wrap reveal"><h2>{p.howTitle}</h2><p>{p.howBody}</p></div>
+  <div class="wrap reveal"><h2>{p.howTitle}</h2><p>{p.howBody}</p><p><a href={capHref} rel="noopener">{p.capLink} →</a></p></div>
 </section>
 <section class="section">
   <div class="wrap reveal"><h2>{p.collabTitle}</h2><p>{p.collabBody}</p></div>
@@ -32,3 +32,5 @@ const p = pages[lang].join;
     <p>{p.contactBody} <strong>{p.email}</strong></p>
   </div>
 </section>
+
+<style>.grid.cols-4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }</style>

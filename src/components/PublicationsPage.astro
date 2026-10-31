@@ -25,7 +25,7 @@ const sorted = [...publications].sort((a, b) => b.year - a.year);
       {sorted.map((x) => (
         <li class="card" data-type={x.type} data-year={x.year} data-text={`${x.title} ${x.authors}`.toLowerCase()}>
           <span class="tag">{p.types[x.type as keyof typeof p.types]}</span> <span class="tag">{x.year}</span>
-          <h3>{x.title}</h3>
+          <h3>{x.href ? <a href={x.href} rel="noopener">{x.title}</a> : x.title}</h3>
           <p class="muted">{x.authors}<br />{x.venue}</p>
         </li>
       ))}

@@ -7,7 +7,7 @@
 - Primeiro o básico: site estático que apresenta o laboratório, as linhas de pesquisa, projetos, publicações, notícias, equipe e vagas. O painel `/admin` fica para depois.
 - O painel `/admin`, quando vier, será um CMS baseado em Git (Decap CMS ou Sveltia CMS), com login pela conta do GitHub, só para pessoas com permissão no repositório. Para o login funcionar fora do Netlify, é preciso um pequeno proxy de OAuth (por exemplo, em um Cloudflare Worker).
 - Hospedagem final: GitHub Pages, publicado apenas quando a primeira versão estiver pronta. O Cloudflare Pages fica como opção para quando o painel de administração entrar.
-- Enquanto o professor e a equipe não aprovarem, só placeholders. Nenhum dado pessoal real no repositório público.
+- Enquanto o professor e a equipe não aprovarem, só placeholders. Nenhum dado pessoal real no repositório público. (Revisto em 31/10/2026, ver abaixo.)
 - Paleta Observatório (fundo claro, índigo e magenta) e tipografia Space Grotesk, Inter e IBM Plex Mono.
 - Efeitos: nível 1 no site inteiro primeiro. Nível 2 só no topo e no bloco explicativo, depois.
 - Wireframes de baixa fidelidade feitos em 31/10/2026 (home desktop e celular, Research, Projects, Publications, News, Team, Join us).
@@ -16,8 +16,16 @@
 - Framework: Astro (site estático). Pedro liberou seguir em 31/10/2026.
 - Base criada: layout, cabeçalho com menu de 6 itens e botão EN | PT, rodapé, Home curta com placeholders e páginas vazias para os outros 5 itens. Textos em `src/i18n/ui.ts`.
 
+## 2026-10-31 (tarde)
+
+- Pedro enviou o pôster do LAMIFE e o texto do INPE. O site passou a usar conteúdo real: quatro linhas de pesquisa, projetos, parceiros, ferramentas, vagas e a equipe com nome, função e unidade. Fontes e pendências em `docs/content-sources.md`.
+- Regra de dados pessoais ajustada: nomes, funções e unidades que o INPE já publica podem entrar. Fotos, contatos e links pessoais continuam dependendo da concordância de cada pessoa.
+- O repositório é privado. Antes de publicar no GitHub Pages ou tornar o repositório público, o professor precisa aprovar os textos e a lista da equipe.
+- Nome em inglês confirmado pelo pôster: Laboratory of Interpretable Machine Learning for Physics of Extreme Events.
+- Textos escritos para o site a partir dos fatos, sem copiar nem traduzir o texto do gov.br (CC BY-ND 3.0).
+
 ## Pendências
 
 - Encurtar a Home e desenhar a página de detalhe de uma linha de pesquisa.
-- Confirmar com o professor o nome do laboratório em inglês, logo ou orientações visuais do INPE, e a licença.
-- Pedir ao professor a equipe atualizada e os textos das linhas de pesquisa.
+- Confirmar com o professor logo e orientações visuais do INPE, e a licença.
+- Pedir ao professor o que ficou marcado como pendente em `docs/content-sources.md`.
