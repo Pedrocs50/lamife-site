@@ -150,8 +150,12 @@ export const news = [
     summary: { en: '[Short summary.]', pt: '[Resumo curto.]' }, featured: false },
 ];
 
-// Names and roles come from INPE's public lab page and the lab poster. No photos, contacts or personal links.
-export const team = [
+// Names and roles come from INPE's public lab page and the lab poster. No photos or contacts.
+// Optional per person: links: { lattes, linkedin, orcid, github, email }. Example:
+//   { name: '...', role: '...', unit: '...', links: { lattes: 'http://lattes.cnpq.br/0000000000000000', email: 'name@inpe.br' } }
+// Add a link only with the person's agreement. A button only shows when its link is filled in.
+export type Links = { lattes?: string; linkedin?: string; orcid?: string; github?: string; email?: string };
+export const team: { name: string; role: string; unit: string; links?: Links }[] = [
   { name: 'Reinaldo Roberto Rosa', role: 'supervisor', unit: 'INPE / COPDT' },
   { name: 'Eduardo dos Santos Pereira', role: 'researcher', unit: 'COPDT' },
   { name: 'Stephan Stephany', role: 'researcher', unit: 'COPDT' },

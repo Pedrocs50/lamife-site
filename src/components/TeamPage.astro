@@ -3,6 +3,18 @@ import PageHead from './PageHead.astro';
 import { ui, type Lang } from '../i18n/ui';
 import { pages } from '../i18n/pages';
 import { team } from '../data/content';
+const kinds = [
+  { key: 'lattes', label: 'Lattes' },
+  { key: 'linkedin', label: 'LinkedIn' },
+  { key: 'orcid', label: 'ORCID' },
+  { key: 'github', label: 'GitHub' },
+  { key: 'email', label: 'E-mail' },
+] as const;
+// In dev mode the Lattes button is shown dimmed when missing, so the layout can be checked.
+const buttons = (links: Record<string, string | undefined> = {}) =>
+  kinds
+    .map((k) => ({ ...k, url: links[k.key] ? (k.key === 'email' ? `mailto:${links[k.key]}` : links[k.key]!) : '' }))
+    .filter((b) => b.url || (import.meta.env.DEV && b.key === 'lattes'));
 const initials = (n: string) => { const w = n.split(' ').filter((x) => /^[A-ZÀ-Ú]/.test(x)); return ((w[0]?.[0] ?? '') + (w.length > 1 ? w[w.length - 1][0] : '')).toUpperCase(); };
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -20,6 +32,13 @@ const groups = Object.entries(p.roles).map(([role, label]) => ({ role, label, pe
             <div class="avatar" aria-hidden="true">{initials(m.name)}</div>
             <h3>{m.name}</h3>
             <p class="muted">{m.unit}</p>
+            {buttons(m.links).length > 0 && (
+              <p class="links">
+                {buttons(m.links).map((b) => b.url
+                  ? <a class="chip-link" href={b.url} rel="noopener" target={b.key === 'email' ? undefined : '_blank'} aria-label={`${b.label}: ${m.name}`}>{b.label}</a>
+                  : <span class="chip-link off" aria-hidden="true" title="Add the link in src/data/content.ts">{b.label}</span>)}
+              </p>
+            )}
           </article>
         ))}
       </div>
@@ -32,4 +51,8 @@ const groups = Object.entries(p.roles).map(([role, label]) => ({ role, label, pe
   .avatar { width: 84px; height: 84px; border-radius: 50%; margin: 0 auto 1rem; display: grid; place-items: center; background: var(--surface); color: var(--brand); font-family: var(--font-head); font-size: 2rem; border: 2px solid var(--line); }
   .person h3 { font-size: 1.05rem; }
   .person p { margin: 0 auto; font-size: .95rem; }
+  .person .links { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem; margin-top: 1rem; }
+  .chip-link { font-family: var(--font-mono); font-size: .75rem; padding: .3rem .7rem; border-radius: 999px; border: 1.5px solid var(--brand); color: var(--brand); text-decoration: none; background: var(--bg); transition: background .2s ease, color .2s ease; }
+  a.chip-link:hover { background: var(--brand); color: #fff; }
+  .chip-link.off { border-style: dashed; border-color: var(--line); color: var(--ink-soft); opacity: .7; }
 </style>
