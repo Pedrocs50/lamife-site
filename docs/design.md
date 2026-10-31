@@ -19,6 +19,17 @@ Notas de contraste (calculadas à mão, a confirmar com um verificador antes de 
 - Magenta sobre branco fica perto do mínimo de 4,5:1. Usar como fundo de selo com texto branco ou em elementos grandes, e não em texto pequeno sobre lavanda.
 - Texto secundário sobre lavanda passa.
 
+### Cores de apoio das linhas de pesquisa
+
+Cada linha de pesquisa tem uma cor própria, usada no ícone, na borda do card e nas etiquetas. Todas passam de 4,5:1 sobre branco (calculado à mão, confirmar com verificador antes de publicar).
+
+| Linha | Variável | Hex |
+|---|---|---|
+| A, Física Espacial | `--line-space` | #6D28D9 |
+| B, Física Ambiental | `--line-env` | #0F766E |
+| C, Energia | `--line-energy` | #C2410C |
+| D, Saúde | `--line-health` | #1D4ED8 |
+
 Alternativas consideradas e deixadas de lado: Violeta sideral (topo escuro, seções claras) e Noite solar (tema escuro inteiro). Dá para retomar depois, porque as cores ficam como variáveis.
 
 ## Tipografia
@@ -45,6 +56,14 @@ Regras para qualquer efeito:
 - O conteúdo deve aparecer corretamente mesmo sem JavaScript ou sem suporte ao efeito.
 - Nada de sequestrar a rolagem da página.
 - Animação do topo leve: vídeo curto, mudo e em loop, com imagem de capa, ou animação direto na página. Testar as duas no protótipo.
+
+## Estado dos efeitos (31/10/2026)
+
+- Nível 1 feito: surgimento ao rolar com atraso escalonado nos cards, hover nos cards e botões, cabeçalho que encolhe e ganha sombra ao rolar.
+- Topo da Home animado (`HeroVisual.astro`): estrelas, constelações e uma série temporal que se desenha, com a anomalia destacada em magenta e a região que a "explica". SVG e CSS, sem JavaScript, e sem animação quando `prefers-reduced-motion` está ligado.
+- Diagrama "Dados + Física → XAI → Detectar, Compreender, Explicar, Prever" (`Pipeline.astro`): entra em sequência ao rolar.
+- Ícones das quatro linhas (`LineIcon.astro`), em SVG.
+- Ainda sem logo, imagens ou fotos da equipe, por decisão do Pedro. Entram quando houver logo oficial e consentimento.
 
 ## Hyperframes
 

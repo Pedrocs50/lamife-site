@@ -1,0 +1,82 @@
+---
+// Decorative hero: a starfield and a time series whose anomaly is highlighted.
+// Pure SVG + CSS. Stars are generated with a seeded generator so the build is stable.
+import type { Lang } from '../i18n/ui';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const label = lang === 'pt'
+  ? { anomaly: 'anomalia', why: 'por quê? (XAI)', time: 'tempo', alt: 'Série temporal com uma anomalia destacada e a região que explica a detecção.' }
+  : { anomaly: 'anomaly', why: 'why? (XAI)', time: 'time', alt: 'Time series with a highlighted anomaly and the region that explains the detection.' };
+
+function rng(seed: number) {
+  return () => { seed |= 0; seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+const r = rng(42);
+const stars = Array.from({ length: 70 }, () => ({ x: r() * 560, y: r() * 420, r: 0.6 + r() * 1.6, o: 0.25 + r() * 0.5, d: (r() * 5).toFixed(2), accent: r() > 0.9 }));
+const clusters = [[[40, 50], [95, 85], [150, 60], [190, 110], [130, 140]], [[430, 40], [480, 80], [525, 55], [500, 130]], [[60, 380], [110, 350], [170, 385]]];
+
+// Signal: slow wave + fast ripple + one spike.
+const N = 110, x0 = 64, x1 = 508, base = 262, spikeAt = 78;
+const pts = Array.from({ length: N }, (_, i) => {
+  const t = i / (N - 1);
+  const x = x0 + t * (x1 - x0);
+  let y = base + Math.sin(t * 9) * 9 + Math.sin(t * 31 + 1) * 4 + Math.sin(t * 57) * 2;
+  const d = i - spikeAt;
+  y -= 96 * Math.exp(-(d * d) / 5) - 18 * Math.exp(-((d - 4) * (d - 4)) / 6);
+  return [x, y];
+});
+const path = pts.map(([x, y], i) => `${i ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}`).join(' ');
+const [px, py] = pts.reduce((a, b) => (b[1] < a[1] ? b : a));
+---
+<svg class="hero-visual" viewBox="0 0 560 420" role="img" aria-label={label.alt}>
+  <g aria-hidden="true">
+    {clusters.map((c) => (
+      <polyline class="const" points={c.map((p) => p.join(',')).join(' ')} />
+    ))}
+    {clusters.flat().map(([x, y]) => <circle class="node" cx={x} cy={y} r="3" />)}
+    {stars.map((s) => (
+      <circle class:list={['star', s.accent && 'warm']} cx={s.x.toFixed(1)} cy={s.y.toFixed(1)} r={s.r.toFixed(2)} style={`--o:${s.o.toFixed(2)};--d:${s.d}s`} />
+    ))}
+  </g>
+  <rect class="panel" x="40" y="130" width="496" height="214" rx="14" />
+  <g class="grid" aria-hidden="true">
+    {[170, 210, 250, 290, 330].map((y) => <line x1="56" x2="520" y1={y} y2={y} />)}
+  </g>
+  <rect class="xai" x={px - 26} y="142" width="52" height="190" rx="6" />
+  <path class="signal" d={path} pathLength="1" />
+  <g class="marker" transform={`translate(${px.toFixed(1)} ${py.toFixed(1)})`}>
+    <circle class="ring" r="6" /><circle class="ring r2" r="6" /><circle class="dot" r="5.5" />
+  </g>
+  <text class="lbl hot" x={px + 12} y={py + 4}>{label.anomaly}</text>
+  <text class="lbl" x={px - 26} y="324" text-anchor="middle">{label.why}</text>
+  <text class="lbl dim" x="520" y="336" text-anchor="end">{label.time} →</text>
+</svg>
+<style>
+  .hero-visual { width: 100%; height: auto; display: block; }
+  .const { fill: none; stroke: var(--brand); stroke-opacity: .22; stroke-width: 1; }
+  .node { fill: var(--brand); fill-opacity: .55; }
+  .star { fill: var(--ink-soft); fill-opacity: var(--o); animation: twinkle 4.5s ease-in-out var(--d) infinite; }
+  .star.warm { fill: var(--accent); }
+  .panel { fill: rgba(255, 255, 255, .86); stroke: var(--line); stroke-width: 1.5; }
+  .grid line { stroke: var(--surface); stroke-width: 1; }
+  .xai { fill: var(--accent); fill-opacity: .10; stroke: var(--accent); stroke-opacity: .45; stroke-dasharray: 4 4; opacity: 0; animation: fade .6s ease 3.1s forwards; }
+  .signal { fill: none; stroke: var(--brand); stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 3.2s cubic-bezier(.4, .1, .3, 1) .3s forwards; }
+  .marker { opacity: 0; animation: fade .3s ease 3.1s forwards; }
+  .dot { fill: var(--accent); }
+  .ring { fill: none; stroke: var(--accent); stroke-width: 2; transform-box: fill-box; transform-origin: center; animation: pulse 2.4s ease-out 3.2s infinite; }
+  .ring.r2 { animation-delay: 4.4s; }
+  .lbl { font-family: var(--font-mono); font-size: 13px; fill: var(--ink-soft); opacity: 0; animation: fade .5s ease 3.4s forwards; }
+  .lbl.hot { fill: var(--accent); font-weight: 600; }
+  .lbl.dim { fill: var(--ink-soft); animation-delay: .3s; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes fade { to { opacity: 1; } }
+  @keyframes pulse { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(3.4); opacity: 0; } }
+  @keyframes twinkle { 0%, 100% { fill-opacity: var(--o); } 50% { fill-opacity: calc(var(--o) * .35); } }
+  /* Without motion the finished picture is shown at once. */
+  @media (prefers-reduced-motion: reduce) {
+    .signal { animation: none; stroke-dashoffset: 0; }
+    .xai, .marker, .lbl { animation: none; opacity: 1; }
+    .ring, .star { animation: none; }
+    .ring { opacity: 0; }
+  }
+</style>

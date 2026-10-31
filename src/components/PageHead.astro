@@ -1,15 +1,22 @@
 ---
-interface Props { title: string; lead?: string; eyebrow?: string }
-const { title, lead, eyebrow } = Astro.props;
+interface Props { title: string; lead?: string; eyebrow?: string; accent?: string }
+const { title, lead, eyebrow, accent } = Astro.props;
 ---
-<section class="page-head">
-  <div class="wrap">
-    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-    <h1>{title}</h1>
-    {lead && <p class="lead">{lead}</p>}
+<section class="page-head" style={accent ? `--c:${accent}` : undefined}>
+  <div class:list={['wrap', 'head-grid', Astro.slots.has('aside') && 'has-aside']}>
+    <div>
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1>{title}</h1>
+      {lead && <p class="lead">{lead}</p>}
+    </div>
+    {Astro.slots.has('aside') && <div class="aside"><slot name="aside" /></div>}
   </div>
 </section>
 <style>
-  .page-head { padding: 4rem 0 3rem; background: linear-gradient(180deg, var(--surface), var(--bg)); }
+  .page-head { padding: 4rem 0 3rem; background: linear-gradient(180deg, var(--surface), var(--bg)); border-top: 4px solid var(--c, transparent); }
+  .head-grid.has-aside { display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; }
   .lead { font-size: 1.2rem; color: var(--ink-soft); margin: 0; }
+  .aside { color: var(--c, var(--brand)); }
+  .aside :global(.line-icon) { width: 120px; height: 120px; stroke-width: 1.6; }
+  @media (max-width: 640px) { .head-grid.has-aside { grid-template-columns: 1fr; } .aside :global(.line-icon) { width: 72px; height: 72px; } }
 </style>

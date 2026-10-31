@@ -4,6 +4,7 @@ import { type Lang } from '../i18n/ui';
 import { pages } from '../i18n/pages';
 import { researchLines, projects, publications, tr } from '../data/content';
 import { prefixFor } from '../i18n/path';
+import LineIcon from './LineIcon.astro';
 interface Props { lang: Lang; slug: string }
 const { lang, slug } = Astro.props;
 const p = pages[lang].research;
@@ -12,8 +13,10 @@ const prefix = prefixFor(lang);
 const relProjects = projects.filter((x) => x.line === slug);
 const relPubs = publications.filter((x) => x.line === slug);
 ---
-<PageHead title={tr(line.title, lang)} lead={tr(line.tagline, lang)} eyebrow={`${p.title} · ${line.letter}`} />
-<section class="section">
+<PageHead title={tr(line.title, lang)} lead={tr(line.tagline, lang)} eyebrow={`${p.title} · ${line.letter}`} accent={line.accent}>
+  <LineIcon slot="aside" slug={line.slug} size={120} />
+</PageHead>
+<section class="section" style={`--c:${line.accent}`}>
   <div class="wrap">
     <p><a href={`${prefix}/research/`}>← {pages[lang].backToResearch}</a></p>
     <h2>{p.simple}</h2><p>{tr(line.simple, lang)}</p>
@@ -36,4 +39,4 @@ const relPubs = publications.filter((x) => x.line === slug);
     ) : <p class="muted">{p.none}</p>}
   </div>
 </section>
-<style>.tag { margin: 0 .35rem .35rem 0; } h2 { margin-top: 1.5rem; } h2:first-of-type { margin-top: 0; }</style>
+<style>.tag { background: color-mix(in srgb, var(--c, var(--brand)) 12%, #fff); color: var(--c, var(--brand)); margin: 0 .35rem .35rem 0; } h2 { margin-top: 1.5rem; } h2:first-of-type { margin-top: 0; }</style>

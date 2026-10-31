@@ -26,7 +26,7 @@ const pageTitle = title ? `${title} · ${t.labName}` : `${t.labName} · ${t.labF
     <Footer lang={lang} />
     <script is:inline>
       // Level 1 effect: reveal elements as they enter the viewport.
-      const els = document.querySelectorAll('.reveal');
+      const els = document.querySelectorAll('.reveal, .flow');
       if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver((entries) => {
           entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
@@ -35,6 +35,9 @@ const pageTitle = title ? `${title} · ${t.labName}` : `${t.labName} · ${t.labF
       } else {
         els.forEach((el) => el.classList.add('in'));
       }
+      // Header: smaller with a shadow once the page is scrolled.
+      const onScroll = () => document.documentElement.classList.toggle('scrolled', window.scrollY > 16);
+      onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
     </script>
     <style>
       .skip { position: absolute; left: -9999px; }

@@ -2,6 +2,9 @@
 import { nav, ui, type Lang } from '../i18n/ui';
 import { researchLines, partners, news, tr } from '../data/content';
 import { fmtDate } from '../i18n/path';
+import HeroVisual from './HeroVisual.astro';
+import LineIcon from './LineIcon.astro';
+import Pipeline from './Pipeline.astro';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = ui[lang];
@@ -10,14 +13,17 @@ const prefix = lang === 'pt' ? `${base}/pt` : base;
 const latest = [...news].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
 ---
 <section class="hero">
-  <div class="wrap">
-    <p class="eyebrow">{t.heroEyebrow}</p>
-    <h1>{t.heroTitle}</h1>
-    <p class="lead">{t.heroLead}</p>
-    <p class="actions">
-      <a class="btn" href={`${prefix}/research/`}>{t.ctaResearch}</a>
-      <a class="btn ghost" href={`${prefix}/join/`}>{t.ctaJoin}</a>
-    </p>
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <p class="eyebrow">{t.heroEyebrow}</p>
+      <h1>{t.heroTitle}</h1>
+      <p class="lead">{t.heroLead}</p>
+      <p class="actions">
+        <a class="btn" href={`${prefix}/research/`}>{t.ctaResearch}</a>
+        <a class="btn ghost" href={`${prefix}/join/`}>{t.ctaJoin}</a>
+      </p>
+    </div>
+    <div class="hero-art"><HeroVisual lang={lang} /></div>
   </div>
 </section>
 
@@ -25,9 +31,7 @@ const latest = [...news].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3
   <div class="wrap reveal">
     <h2>{t.whatTitle}</h2>
     <p>{t.whatBody}</p>
-    <ol class="steps">
-      {t.steps.map((st, i) => <li><span class="n">{i + 1}</span>{st}</li>)}
-    </ol>
+    <Pipeline lang={lang} />
   </div>
 </section>
 
@@ -36,8 +40,8 @@ const latest = [...news].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3
     <h2 class="reveal">{t.linesTitle}</h2>
     <div class="grid cols-3">
       {researchLines.map((l) => (
-        <a class="card reveal" href={`${prefix}/research/${l.slug}/`}>
-          <span class="tag">{l.letter}</span>
+        <a class="card line reveal" style={`--c:${l.accent}`} href={`${prefix}/research/${l.slug}/`}>
+          <span class="badge"><LineIcon slug={l.slug} /><span class="tag">{l.letter}</span></span>
           <h3>{tr(l.title, lang)}</h3>
           <p class="muted">{tr(l.tagline, lang)}</p>
         </a>
@@ -79,25 +83,19 @@ const latest = [...news].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3
 </section>
 
 <style>
-  .hero { position: relative; padding: 6rem 0 5rem; background: linear-gradient(180deg, var(--surface), var(--bg)); overflow: hidden; }
-  /* Decorative stars live in the right margin only, so they never sit under text. */
-  .hero::after {
-    content: ''; position: absolute; inset: 0; pointer-events: none;
-    background:
-      radial-gradient(circle at 94% 22%, var(--accent) 0 2.5px, transparent 3.5px),
-      radial-gradient(circle at 88% 48%, var(--brand) 0 2px, transparent 3px),
-      radial-gradient(circle at 97% 66%, var(--brand) 0 1.5px, transparent 2.5px),
-      radial-gradient(circle at 91% 82%, var(--accent) 0 1.5px, transparent 2.5px);
+  .hero { position: relative; padding: 4.5rem 0 4rem; background: linear-gradient(180deg, var(--surface), var(--bg)); overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 2rem; align-items: center; }
+  .hero-art { max-width: 560px; justify-self: end; width: 100%; }
+  @media (max-width: 900px) {
+    .hero { padding: 3rem 0 2.5rem; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-art { max-width: 460px; justify-self: center; }
   }
-  @media (max-width: 900px) { .hero::after { display: none; } }
   .lead { font-size: 1.25rem; color: var(--ink-soft); }
   .actions { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.5rem; }
   .card { display: block; text-decoration: none; color: inherit; }
   .card h3 { margin-top: .75rem; color: var(--ink); }
   .more { margin-top: 1.5rem; font-weight: 600; }
   .join { text-align: left; }
-  .steps { list-style: none; padding: 0; margin: 2rem 0 0; display: flex; flex-wrap: wrap; gap: .75rem 2rem; font-family: var(--font-head); font-size: 1.15rem; font-weight: 600; }
-  .steps li { display: flex; align-items: center; gap: .6rem; }
-  .steps .n { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--brand); color: #fff; font-size: .95rem; }
   .tag { margin: 0 .35rem .35rem 0; }
 </style>

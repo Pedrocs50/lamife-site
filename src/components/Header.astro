@@ -26,6 +26,10 @@ const switchHref = `${otherPrefix}/${slug}`.replace(/\/$/, '') + (slug ? '/' : '
 <style>
   .site-header { position: sticky; top: 0; z-index: 5; background: rgba(255,255,255,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
   .bar { display: flex; align-items: center; gap: 1.5rem; min-height: 64px; flex-wrap: wrap; }
+  .bar { transition: min-height .25s ease; }
+  .site-header { transition: box-shadow .25s ease; }
+  :global(html.scrolled) .site-header { box-shadow: 0 4px 18px rgba(18, 18, 43, .08); }
+  :global(html.scrolled) .bar { min-height: 52px; }
   .brand { font-family: var(--font-head); font-weight: 700; font-size: 1.4rem; color: var(--brand); text-decoration: none; letter-spacing: .02em; }
   nav { flex: 1; }
   @media (max-width: 800px) {

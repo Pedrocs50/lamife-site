@@ -1,0 +1,57 @@
+---
+import { ui, type Lang } from '../i18n/ui';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
+const f = t.flow;
+---
+<div class="flow" role="group" aria-label={`${f.data} + ${f.phys} → ${f.xai} → ${t.steps.join(', ')}`}>
+  <div class="col inputs stage s1">
+    <div class="node data"><strong>{f.data}</strong><span>{f.dataSub}</span></div>
+    <div class="plus" aria-hidden="true">+</div>
+    <div class="node phys"><strong>{f.phys}</strong><span>{f.physSub}</span></div>
+  </div>
+  <div class="link stage s2" aria-hidden="true"></div>
+  <div class="col stage s3">
+    <div class="node xai"><strong>{f.xai}</strong><span>{f.xaiSub}</span></div>
+  </div>
+  <div class="link stage s4" aria-hidden="true"></div>
+  <ol class="col steps stage s5">
+    {t.steps.map((st, i) => <li class="node step"><span class="n">{i + 1}</span>{st}</li>)}
+  </ol>
+</div>
+<style>
+  .flow { display: grid; grid-template-columns: 1.15fr auto .9fr auto .8fr; align-items: center; gap: 1rem; margin-top: 2.5rem; }
+  .col { display: grid; gap: .5rem; }
+  .node { border: 1.5px solid var(--line); border-radius: 12px; padding: .9rem 1.1rem; background: var(--bg); }
+  .node strong { display: block; font-family: var(--font-head); font-size: 1.05rem; }
+  .node span:not(.n) { display: block; font-size: .85rem; color: var(--ink-soft); line-height: 1.4; margin-top: .2rem; }
+  .data { border-color: var(--brand); }
+  .phys { border-color: var(--line-env); }
+  .plus { text-align: center; font-family: var(--font-mono); color: var(--ink-soft); line-height: 1; }
+  .xai { background: var(--brand); border-color: var(--brand); color: #fff; text-align: center; padding: 1.5rem 1.1rem; }
+  .xai strong { font-size: 2rem; letter-spacing: .04em; }
+  .xai span:not(.n) { color: #dedcf7; }
+  .steps { list-style: none; margin: 0; padding: 0; position: relative; }
+  .step { display: flex; align-items: center; gap: .7rem; font-family: var(--font-head); font-weight: 600; padding: .6rem .9rem; }
+  .step .n { display: grid; place-items: center; width: 1.7rem; height: 1.7rem; flex: none; border-radius: 50%; background: var(--accent); color: #fff; font-size: .85rem; }
+  .link { position: relative; width: 38px; height: 2px; background: var(--brand); border-radius: 2px; }
+  .link::after { content: ''; position: absolute; right: -1px; top: -4px; border: 5px solid transparent; border-left: 8px solid var(--brand); border-right: 0; }
+
+  /* Entrance in sequence once the diagram scrolls into view. Visible by default without JS. */
+  :global(.js) .stage { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  :global(.js) .flow.in .stage { opacity: 1; transform: none; }
+  .s2 { transition-delay: .35s !important; } .s3 { transition-delay: .6s !important; }
+  .s4 { transition-delay: .95s !important; } .s5 { transition-delay: 1.2s !important; }
+  .s1 { transition-delay: .05s !important; }
+
+  @media (max-width: 900px) {
+    .flow { grid-template-columns: 1fr; justify-items: stretch; }
+    .link { width: 2px; height: 28px; justify-self: center; }
+    .link::after { right: auto; left: -4px; top: auto; bottom: -1px; border: 5px solid transparent; border-top: 8px solid var(--brand); border-bottom: 0; }
+    .steps { grid-template-columns: 1fr 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :global(.js) .stage { opacity: 1; transform: none; transition: none; }
+  }
+</style>

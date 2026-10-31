@@ -4,6 +4,7 @@ import { ui, type Lang } from '../i18n/ui';
 import { pages } from '../i18n/pages';
 import { researchLines, reading, tr } from '../data/content';
 import { prefixFor } from '../i18n/path';
+import LineIcon from './LineIcon.astro';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const p = pages[lang].research;
@@ -31,8 +32,8 @@ const methods = [...new Set(researchLines.flatMap((l) => l.methods))];
     <h2 class="reveal">{p.linesTitle}</h2>
     <div class="grid cols-3">
       {researchLines.map((l) => (
-        <a class="card reveal" href={`${prefix}/research/${l.slug}/`}>
-          <span class="tag">{l.letter}</span>
+        <a class="card line reveal" style={`--c:${l.accent}`} href={`${prefix}/research/${l.slug}/`}>
+          <span class="badge"><LineIcon slug={l.slug} /><span class="tag">{l.letter}</span></span>
           <h3>{tr(l.title, lang)}</h3>
           <p class="muted">{tr(l.simple, lang)}</p>
           <p>{tr(l.topics, lang).map((m) => <span class="tag">{m}</span>)}</p>
@@ -64,5 +65,5 @@ const methods = [...new Set(researchLines.flatMap((l) => l.methods))];
   .card h3 { color: var(--ink); }
   .tag { margin: 0 .35rem .35rem 0; }
   .reading { padding-left: 1.2rem; display: grid; gap: .9rem; max-width: var(--measure); }
-  .go { color: var(--brand); font-weight: 600; }
+  .go { color: var(--c, var(--brand)); font-weight: 600; }
 </style>

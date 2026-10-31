@@ -9,6 +9,7 @@ export const tr = (v: L, lang: Lang) => v[lang] ?? v.en;
 export const researchLines = [
   {
     slug: 'space-physics',
+    accent: 'var(--line-space)',
     letter: 'A',
     title: { en: 'Space Physics under Extreme Regimes', pt: 'Física Espacial em Regimes Extremos' },
     tagline: { en: 'From the Sun to the Universe', pt: 'Do Sol ao Universo' },
@@ -25,6 +26,7 @@ export const researchLines = [
   },
   {
     slug: 'environmental-physics',
+    accent: 'var(--line-env)',
     letter: 'B',
     title: { en: 'Environmental Physics under Extreme Regimes', pt: 'Física Ambiental em Regimes Extremos' },
     tagline: { en: 'A more resilient Earth through data, physics and AI', pt: 'Um planeta mais resiliente com dados, física e IA' },
@@ -41,6 +43,7 @@ export const researchLines = [
   },
   {
     slug: 'energy',
+    accent: 'var(--line-energy)',
     letter: 'C',
     title: { en: 'Energy under Extreme Regimes', pt: 'Energia em Regimes Extremos' },
     tagline: { en: 'From plasma instability to sustainable energy', pt: 'Da instabilidade de plasma à energia sustentável' },
@@ -57,6 +60,7 @@ export const researchLines = [
   },
   {
     slug: 'health',
+    accent: 'var(--line-health)',
     letter: 'D',
     title: { en: 'Health under Extreme Regimes', pt: 'Saúde em Regimes Extremos' },
     tagline: { en: 'Human health in extreme environments for a better future', pt: 'Saúde humana em ambientes extremos para um futuro melhor' },

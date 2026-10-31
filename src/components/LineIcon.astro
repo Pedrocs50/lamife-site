@@ -1,0 +1,29 @@
+---
+// Simple line icons for the four research lines. They inherit the text color.
+interface Props { slug: string; size?: number }
+const { slug, size = 44 } = Astro.props;
+const rays = Array.from({ length: 8 }, (_, i) => {
+  const a = (i * Math.PI) / 4, c = Math.cos(a), s = Math.sin(a);
+  return { x1: 22 + 11 * c, y1: 22 + 11 * s, x2: 22 + 15.5 * c, y2: 22 + 15.5 * s };
+});
+---
+<svg class="line-icon" width={size} height={size} viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  {slug === 'space-physics' && (<>
+    <circle cx="22" cy="22" r="6.5" />
+    {rays.map((r) => <line x1={r.x1.toFixed(1)} y1={r.y1.toFixed(1)} x2={r.x2.toFixed(1)} y2={r.y2.toFixed(1)} />)}
+    <path d="M31 42 Q42 42 42 31" /><path d="M27 42 Q46 42 46 23" />
+  </>)}
+  {slug === 'environmental-physics' && (<>
+    <path d="M13 31 a6.5 6.5 0 0 1 1.2 -12.9 a10 10 0 0 1 19.2 2.6 a5.5 5.5 0 0 1 -1 10.3 Z" />
+    <path d="M7 40 q4.2 -4 8.4 0 t8.4 0 t8.4 0 t8.4 0" />
+  </>)}
+  {slug === 'energy' && (<>
+    <ellipse cx="24" cy="26" rx="19" ry="10" />
+    <ellipse cx="24" cy="26" rx="9" ry="3.8" />
+    <path d="M24 5 L20 13 h6 l-3 8" />
+  </>)}
+  {slug === 'health' && (<>
+    <path d="M24 41 C10 31 6 21 12 15 a8 8 0 0 1 12 2 a8 8 0 0 1 12 -2 c6 6 2 16 -12 26 Z" />
+    <path d="M9 27 h8 l3 -6 l5 11 l3 -5 h11" />
+  </>)}
+</svg>
