@@ -1,0 +1,34 @@
+---
+import PageHead from './PageHead.astro';
+import { ui, type Lang } from '../i18n/ui';
+import { pages } from '../i18n/pages';
+import { opportunities, tr } from '../data/content';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = pages[lang].join;
+---
+<PageHead title={p.title} lead={p.lead} eyebrow={ui[lang].labName} />
+<section class="section">
+  <div class="wrap">
+    <div class="grid cols-3">
+      {opportunities.map((o) => (
+        <article class="card reveal">
+          <h3>{p.levels[o.level as keyof typeof p.levels]}</h3>
+          <p class="muted">{tr(o.description, lang)}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+<section class="section alt">
+  <div class="wrap reveal"><h2>{p.howTitle}</h2><p>{p.howBody}</p></div>
+</section>
+<section class="section">
+  <div class="wrap reveal"><h2>{p.collabTitle}</h2><p>{p.collabBody}</p></div>
+</section>
+<section class="section alt" id="contact">
+  <div class="wrap reveal">
+    <h2>{p.contactTitle}</h2>
+    <p>{p.contactBody} <strong>{p.email}</strong></p>
+  </div>
+</section>

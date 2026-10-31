@@ -1,0 +1,88 @@
+import type { Lang } from './ui';
+
+export const pages = {
+  en: {
+    readMore: 'Read more', backToResearch: 'All research', back: 'Back',
+    research: {
+      title: 'Research',
+      lead: '[One-paragraph introduction to the lab\'s research.]',
+      extremeTitle: 'What is an extreme event?',
+      extremeBody: '[Plain-language explanation of extreme events.]',
+      whyTitle: 'Why interpretable AI?',
+      whyBody: '[Plain-language explanation of why interpretability matters in physics.]',
+      methodsTitle: 'Methods',
+      linesTitle: 'Research lines',
+      simple: 'In plain words', technical: 'Technical summary', methods: 'Methods',
+      projectsTitle: 'Related projects', pubsTitle: 'Related publications', peopleTitle: 'People',
+      none: 'Nothing listed yet.',
+    },
+    projects: {
+      title: 'Projects and tools',
+      lead: '[Short introduction to the lab\'s projects and collaborations.]',
+      filterAll: 'All', active: 'Active', finished: 'Finished',
+      partnersTitle: 'Partner institutions', toolsTitle: 'Open-source tools', license: 'License',
+    },
+    publications: {
+      title: 'Publications',
+      lead: '[Short introduction to the lab\'s publications.]',
+      search: 'Search by title or author', type: 'Type', year: 'Year', all: 'All', empty: 'No publications match your search.',
+      types: { article: 'Article', poster: 'Poster', thesis: 'Thesis' },
+    },
+    news: { title: 'News', lead: '[Short introduction.]', featured: 'Featured',
+      categories: { lab: 'Lab', events: 'Events', papers: 'Papers' } },
+    team: {
+      title: 'Team', lead: '[Short introduction to the team.]',
+      roles: { supervisor: 'Supervision', researcher: 'Researchers', postdoc: 'Postdoctoral fellows', phd: 'PhD students',
+        masters: 'Master\'s students', undergrad: 'Undergraduate researchers', external: 'External collaborators' },
+    },
+    join: {
+      title: 'Join us', lead: '[Short invitation to join the lab.]',
+      levels: { masters: 'Master\'s', phd: 'PhD', undergrad: 'Undergraduate research' },
+      howTitle: 'How to apply', howBody: '[Steps to apply, requirements and deadlines.]',
+      collabTitle: 'Collaborate with us', collabBody: '[How researchers and institutions can propose a collaboration.]',
+      contactTitle: 'Contact', contactBody: 'Write to us at', email: '[contact e-mail]',
+    },
+  },
+  pt: {
+    readMore: 'Saiba mais', backToResearch: 'Toda a pesquisa', back: 'Voltar',
+    research: {
+      title: 'Pesquisa',
+      lead: '[Introdução de um parágrafo sobre a pesquisa do laboratório.]',
+      extremeTitle: 'O que é um evento extremo?',
+      extremeBody: '[Explicação em linguagem simples sobre eventos extremos.]',
+      whyTitle: 'Por que IA interpretável?',
+      whyBody: '[Explicação em linguagem simples sobre a importância da interpretabilidade na física.]',
+      methodsTitle: 'Métodos',
+      linesTitle: 'Linhas de pesquisa',
+      simple: 'Em palavras simples', technical: 'Resumo técnico', methods: 'Métodos',
+      projectsTitle: 'Projetos relacionados', pubsTitle: 'Publicações relacionadas', peopleTitle: 'Pessoas',
+      none: 'Nada listado ainda.',
+    },
+    projects: {
+      title: 'Projetos e ferramentas',
+      lead: '[Breve introdução aos projetos e colaborações do laboratório.]',
+      filterAll: 'Todos', active: 'Em andamento', finished: 'Concluído',
+      partnersTitle: 'Instituições parceiras', toolsTitle: 'Ferramentas de código aberto', license: 'Licença',
+    },
+    publications: {
+      title: 'Publicações',
+      lead: '[Breve introdução às publicações do laboratório.]',
+      search: 'Buscar por título ou autor', type: 'Tipo', year: 'Ano', all: 'Todos', empty: 'Nenhuma publicação encontrada.',
+      types: { article: 'Artigo', poster: 'Pôster', thesis: 'Tese ou dissertação' },
+    },
+    news: { title: 'Notícias', lead: '[Breve introdução.]', featured: 'Destaque',
+      categories: { lab: 'Laboratório', events: 'Eventos', papers: 'Artigos' } },
+    team: {
+      title: 'Equipe', lead: '[Breve introdução à equipe.]',
+      roles: { supervisor: 'Supervisão', researcher: 'Pesquisadores', postdoc: 'Pós-doutorandos', phd: 'Doutorandos',
+        masters: 'Mestrandos', undergrad: 'Iniciação científica', external: 'Colaboradores externos' },
+    },
+    join: {
+      title: 'Participe', lead: '[Breve convite para participar do laboratório.]',
+      levels: { masters: 'Mestrado', phd: 'Doutorado', undergrad: 'Iniciação científica' },
+      howTitle: 'Como se candidatar', howBody: '[Etapas, requisitos e prazos para se candidatar.]',
+      collabTitle: 'Colabore com a gente', collabBody: '[Como pesquisadores e instituições podem propor uma colaboração.]',
+      contactTitle: 'Contato', contactBody: 'Escreva para', email: '[e-mail de contato]',
+    },
+  },
+} satisfies Record<Lang, unknown>;

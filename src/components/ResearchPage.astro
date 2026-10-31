@@ -1,0 +1,55 @@
+---
+import PageHead from './PageHead.astro';
+import { ui, type Lang } from '../i18n/ui';
+import { pages } from '../i18n/pages';
+import { researchLines, tr } from '../data/content';
+import { prefixFor } from '../i18n/path';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = pages[lang].research;
+const prefix = prefixFor(lang);
+const methods = [...new Set(researchLines.flatMap((l) => l.methods))];
+---
+<PageHead title={p.title} lead={p.lead} eyebrow={ui[lang].labName} />
+
+<nav class="toc wrap" aria-label="On this page">
+  <a href="#extreme">{p.extremeTitle}</a>
+  <a href="#why">{p.whyTitle}</a>
+  <a href="#lines">{p.linesTitle}</a>
+  <a href="#methods">{p.methodsTitle}</a>
+</nav>
+
+<section class="section" id="extreme">
+  <div class="wrap reveal"><h2>{p.extremeTitle}</h2><p>{p.extremeBody}</p></div>
+</section>
+<section class="section alt" id="why">
+  <div class="wrap reveal"><h2>{p.whyTitle}</h2><p>{p.whyBody}</p></div>
+</section>
+<section class="section" id="lines">
+  <div class="wrap">
+    <h2 class="reveal">{p.linesTitle}</h2>
+    <div class="grid cols-3">
+      {researchLines.map((l) => (
+        <a class="card reveal" href={`${prefix}/research/${l.slug}/`}>
+          <h3>{tr(l.title, lang)}</h3>
+          <p class="muted">{tr(l.simple, lang)}</p>
+          <p>{l.methods.map((m) => <span class="tag">{m}</span>)}</p>
+          <span class="go">{pages[lang].readMore} →</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+<section class="section alt" id="methods">
+  <div class="wrap reveal">
+    <h2>{p.methodsTitle}</h2>
+    <p>{methods.map((m) => <span class="tag">{m}</span>)}</p>
+  </div>
+</section>
+<style>
+  .toc { display: flex; gap: .5rem 1.5rem; flex-wrap: wrap; padding-top: 1rem; padding-bottom: 1rem; font-weight: 500; }
+  .card { display: block; text-decoration: none; color: inherit; }
+  .card h3 { color: var(--ink); }
+  .tag { margin: 0 .35rem .35rem 0; }
+  .go { color: var(--brand); font-weight: 600; }
+</style>

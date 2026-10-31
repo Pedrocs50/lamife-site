@@ -12,16 +12,18 @@ O contato fica dentro de Join us e no rodapé. O idioma troca por um botão EN |
 
 | Página | Conteúdo | Status |
 |---|---|---|
-| Home | Frase do laboratório, animação do espaço no topo, bloco "What do we do?", resumo das linhas de pesquisa, colaborações, últimas notícias, ferramentas e convite para participar. Deve ser curta e apontar para as outras páginas | Wireframe feito (a encurtar) |
-| Research | O que é um evento extremo, como a IA interpretável ajuda, métodos e linhas de pesquisa | Wireframe feito |
-| Research line (detalhe) | Resumo simples, resumo técnico, métodos, projetos, artigos e pessoas ligados à linha | A desenhar |
-| Projects and tools | Projetos e colaborações com filtro, instituições parceiras e ferramentas de código aberto | Wireframe feito |
-| Publications | Artigos, pôsteres e teses, com busca e filtros | Wireframe feito |
-| News | Notícia em destaque e lista | Wireframe feito |
-| Team | Supervisão, pesquisadores, pós-doutorandos e estudantes, colaboradores externos | Wireframe feito |
-| Join us and contact | Mestrado, doutorado, iniciação científica, como se candidatar, colaboração e formulário de contato | Wireframe feito |
+| Home | Frase do laboratório, animação do espaço no topo, bloco "What do we do?", resumo das linhas de pesquisa, colaborações, últimas notícias, ferramentas e convite para participar. Deve ser curta e apontar para as outras páginas | Implementada com placeholders |
+| Research | O que é um evento extremo, como a IA interpretável ajuda, métodos e linhas de pesquisa | Implementada com placeholders |
+| Research line (detalhe) | Resumo simples, resumo técnico, métodos, projetos, artigos e pessoas ligados à linha | Implementada com placeholders |
+| Projects and tools | Projetos e colaborações com filtro, instituições parceiras e ferramentas de código aberto | Implementada com placeholders |
+| Publications | Artigos, pôsteres e teses, com busca e filtros | Implementada com placeholders |
+| News | Notícia em destaque e lista | Implementada com placeholders |
+| Team | Supervisão, pesquisadores, pós-doutorandos e estudantes, colaboradores externos | Implementada com placeholders |
+| Join us and contact | Mestrado, doutorado, iniciação científica, como se candidatar, colaboração e formulário de contato | Implementada com placeholders |
 
 Páginas de detalhe de projeto e de notícia ainda não foram desenhadas.
+
+Os dados de exemplo ficam em `src/data/content.ts` e os textos das páginas em `src/i18n/pages.ts`.
 
 ## Regras de usabilidade
 

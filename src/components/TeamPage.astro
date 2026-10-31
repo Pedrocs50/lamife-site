@@ -1,0 +1,34 @@
+---
+import PageHead from './PageHead.astro';
+import { ui, type Lang } from '../i18n/ui';
+import { pages } from '../i18n/pages';
+import { team, tr } from '../data/content';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = pages[lang].team;
+const groups = Object.entries(p.roles).map(([role, label]) => ({ role, label, people: team.filter((m) => m.role === role) })).filter((g) => g.people.length);
+---
+<PageHead title={p.title} lead={p.lead} eyebrow={ui[lang].labName} />
+{groups.map((g, i) => (
+  <section class:list={['section', i % 2 === 1 && 'alt']}>
+    <div class="wrap">
+      <h2 class="reveal">{g.label}</h2>
+      <div class="grid cols-4">
+        {g.people.map((m) => (
+          <article class="card person reveal">
+            <div class="avatar" aria-hidden="true">?</div>
+            <h3>{m.name}</h3>
+            <p class="muted">{tr(m.topic, lang)}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+))}
+<style>
+  .grid.cols-4 { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  .person { text-align: center; }
+  .avatar { width: 84px; height: 84px; border-radius: 50%; margin: 0 auto 1rem; display: grid; place-items: center; background: var(--surface); color: var(--brand); font-family: var(--font-head); font-size: 2rem; border: 2px solid var(--line); }
+  .person h3 { font-size: 1.05rem; }
+  .person p { margin: 0 auto; font-size: .95rem; }
+</style>

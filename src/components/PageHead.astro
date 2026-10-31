@@ -1,0 +1,15 @@
+---
+interface Props { title: string; lead?: string; eyebrow?: string }
+const { title, lead, eyebrow } = Astro.props;
+---
+<section class="page-head">
+  <div class="wrap">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1>{title}</h1>
+    {lead && <p class="lead">{lead}</p>}
+  </div>
+</section>
+<style>
+  .page-head { padding: 4rem 0 3rem; background: linear-gradient(180deg, var(--surface), var(--bg)); }
+  .lead { font-size: 1.2rem; color: var(--ink-soft); margin: 0; }
+</style>

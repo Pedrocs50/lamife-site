@@ -1,0 +1,58 @@
+---
+import PageHead from './PageHead.astro';
+import { ui, type Lang } from '../i18n/ui';
+import { pages } from '../i18n/pages';
+import { publications } from '../data/content';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = pages[lang].publications;
+const years = [...new Set(publications.map((x) => x.year))].sort((a, b) => b - a);
+const sorted = [...publications].sort((a, b) => b.year - a.year);
+---
+<PageHead title={p.title} lead={p.lead} eyebrow={ui[lang].labName} />
+<section class="section">
+  <div class="wrap">
+    <div class="controls" id="pub-controls">
+      <label>{p.search}<input type="search" id="q" /></label>
+      <label>{p.type}
+        <select id="type"><option value="">{p.all}</option>
+          {Object.entries(p.types).map(([k, v]) => <option value={k}>{v}</option>)}</select></label>
+      <label>{p.year}
+        <select id="year"><option value="">{p.all}</option>
+          {years.map((y) => <option value={String(y)}>{y}</option>)}</select></label>
+    </div>
+    <ol class="pubs" id="pub-list">
+      {sorted.map((x) => (
+        <li class="card" data-type={x.type} data-year={x.year} data-text={`${x.title} ${x.authors}`.toLowerCase()}>
+          <span class="tag">{p.types[x.type as keyof typeof p.types]}</span> <span class="tag">{x.year}</span>
+          <h3>{x.title}</h3>
+          <p class="muted">{x.authors}<br />{x.venue}</p>
+        </li>
+      ))}
+    </ol>
+    <p id="empty" class="muted" hidden>{p.empty}</p>
+  </div>
+</section>
+<style>
+  /* Filters need JavaScript, so they stay hidden without it. */
+  .controls { display: none; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  :global(.js) .controls { display: flex; }
+  label { display: grid; gap: .25rem; font-size: .9rem; color: var(--ink-soft); }
+  input, select { font: inherit; padding: .5rem .75rem; border: 1.5px solid var(--line); border-radius: 8px; min-width: 12rem; background: var(--bg); color: var(--ink); }
+  .pubs { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+  .pubs h3 { margin-top: .5rem; }
+  .pubs p { margin: 0; }
+</style>
+<script is:inline>
+  const q = document.getElementById('q'), type = document.getElementById('type'), year = document.getElementById('year');
+  const items = [...document.querySelectorAll('#pub-list li')], empty = document.getElementById('empty');
+  function apply() {
+    const t = q.value.trim().toLowerCase(); let n = 0;
+    items.forEach((li) => {
+      const ok = (!t || li.dataset.text.includes(t)) && (!type.value || li.dataset.type === type.value) && (!year.value || li.dataset.year === year.value);
+      li.hidden = !ok; if (ok) n++;
+    });
+    empty.hidden = n > 0;
+  }
+  [q, type, year].forEach((el) => el.addEventListener('input', apply));
+</script>

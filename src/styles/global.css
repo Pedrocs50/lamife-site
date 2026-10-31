@@ -62,6 +62,7 @@ a:hover { color: var(--accent); }
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 .card:hover { transform: translateY(-3px); border-color: var(--brand); box-shadow: 0 8px 24px rgba(59, 47, 160, .12); }
+.alt .tag { background: var(--bg); }
 .tag { display: inline-block; font-family: var(--font-mono); font-size: .75rem; padding: .15rem .5rem; border-radius: 4px; background: var(--surface); color: var(--brand); }
 
 /* Level 1 effect: reveal on scroll. Content stays visible without JS. */

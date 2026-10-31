@@ -1,0 +1,39 @@
+---
+import PageHead from './PageHead.astro';
+import { type Lang } from '../i18n/ui';
+import { pages } from '../i18n/pages';
+import { researchLines, projects, publications, team, tr } from '../data/content';
+import { prefixFor } from '../i18n/path';
+interface Props { lang: Lang; slug: string }
+const { lang, slug } = Astro.props;
+const p = pages[lang].research;
+const line = researchLines.find((l) => l.slug === slug)!;
+const prefix = prefixFor(lang);
+const relProjects = projects.filter((x) => x.line === slug);
+const relPubs = publications.filter((x) => x.line === slug);
+---
+<PageHead title={tr(line.title, lang)} lead={tr(line.simple, lang)} eyebrow={p.title} />
+<section class="section">
+  <div class="wrap">
+    <p><a href={`${prefix}/research/`}>← {pages[lang].backToResearch}</a></p>
+    <h2>{p.simple}</h2><p>{tr(line.simple, lang)}</p>
+    <h2>{p.technical}</h2><p>{tr(line.technical, lang)}</p>
+    <h2>{p.methods}</h2>
+    <p>{line.methods.map((m) => <span class="tag">{m}</span>)}</p>
+  </div>
+</section>
+<section class="section alt">
+  <div class="wrap">
+    <h2>{p.projectsTitle}</h2>
+    {relProjects.length ? (
+      <ul>{relProjects.map((x) => <li>{tr(x.title, lang)}</li>)}</ul>
+    ) : <p class="muted">{p.none}</p>}
+    <h2>{p.pubsTitle}</h2>
+    {relPubs.length ? (
+      <ul>{relPubs.map((x) => <li>{x.title} <span class="muted">· {x.venue}, {x.year}</span></li>)}</ul>
+    ) : <p class="muted">{p.none}</p>}
+    <h2>{p.peopleTitle}</h2>
+    <p class="muted">{p.none}</p>
+  </div>
+</section>
+<style>.tag { margin: 0 .35rem .35rem 0; } h2 { margin-top: 1.5rem; } h2:first-of-type { margin-top: 0; }</style>

@@ -1,0 +1,9 @@
+---
+import Base from '../../../layouts/Base.astro';
+import LinePage from '../../../components/LinePage.astro';
+import { researchLines, tr } from '../../../data/content';
+export const getStaticPaths = () => researchLines.map((l) => ({ params: { line: l.slug } }));
+const { line } = Astro.params;
+const item = researchLines.find((l) => l.slug === line)!;
+---
+<Base lang="pt" title={tr(item.title, 'pt')} slug={`research/${line}`}><LinePage lang="pt" slug={line!} /></Base>

@@ -14,7 +14,7 @@ const switchHref = `${otherPrefix}/${slug}`.replace(/\/$/, '') + (slug ? '/' : '
     <nav aria-label="Main">
       <ul>
         {nav.map((item) => (
-          <li><a href={`${prefix}/${item.slug}/`} aria-current={slug === item.slug ? 'page' : undefined}>{item[lang]}</a></li>
+          <li><a href={`${prefix}/${item.slug}/`} aria-current={slug.split('/')[0] === item.slug ? 'page' : undefined}>{item[lang]}</a></li>
         ))}
       </ul>
     </nav>

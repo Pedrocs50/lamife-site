@@ -1,0 +1,63 @@
+---
+import PageHead from './PageHead.astro';
+import { ui, type Lang } from '../i18n/ui';
+import { pages } from '../i18n/pages';
+import { projects, partners, tools, researchLines, tr } from '../data/content';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = pages[lang].projects;
+---
+<PageHead title={p.title} lead={p.lead} eyebrow={ui[lang].labName} />
+<section class="section">
+  <div class="wrap">
+    <div class="filters" role="group" aria-label="Filter by research line">
+      <button class="chip on" data-line="all">{p.filterAll}</button>
+      {researchLines.map((l) => <button class="chip" data-line={l.slug}>{tr(l.title, lang)}</button>)}
+    </div>
+    <div class="grid cols-3" id="project-list">
+      {projects.map((x) => (
+        <article class="card" data-line={x.line}>
+          <span class="tag">{p[x.status]}</span>
+          <h3>{tr(x.title, lang)}</h3>
+          <p class="muted">{tr(x.summary, lang)}</p>
+          {x.partners.length > 0 && <p class="small">{x.partners.join(' · ')}</p>}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+<section class="section alt">
+  <div class="wrap">
+    <h2>{p.partnersTitle}</h2>
+    <div class="grid cols-3">{partners.map((n) => <div class="card logo">{n}</div>)}</div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <h2>{p.toolsTitle}</h2>
+    <div class="grid cols-3">
+      {tools.map((t) => (
+        <article class="card">
+          <h3 class="mono">{t.name}</h3>
+          <p class="muted">{tr(t.description, lang)}</p>
+          <span class="tag">{p.license}: {t.license}</span>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .filters { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
+  .chip { font: inherit; font-size: .9rem; padding: .4rem .9rem; border-radius: 999px; border: 1.5px solid var(--brand); background: transparent; color: var(--brand); cursor: pointer; }
+  .chip.on, .chip:hover { background: var(--brand); color: #fff; }
+  .small { font-size: .9rem; color: var(--ink-soft); }
+  .mono { font-family: var(--font-mono); font-size: 1rem; }
+  .logo { display: grid; place-items: center; min-height: 90px; color: var(--ink-soft); }
+</style>
+<script is:inline>
+  document.querySelectorAll('.chip').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('.chip').forEach((c) => c.classList.toggle('on', c === b));
+    const line = b.dataset.line;
+    document.querySelectorAll('#project-list .card').forEach((c) => { c.hidden = line !== 'all' && c.dataset.line !== line; });
+  }));
+</script>

@@ -1,0 +1,42 @@
+---
+import PageHead from './PageHead.astro';
+import { ui, type Lang } from '../i18n/ui';
+import { pages } from '../i18n/pages';
+import { news, tr } from '../data/content';
+import { fmtDate } from '../i18n/path';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = pages[lang].news;
+const sorted = [...news].sort((a, b) => b.date.localeCompare(a.date));
+const featured = sorted.find((n) => n.featured);
+const rest = sorted.filter((n) => n !== featured);
+const cat = (c: string) => p.categories[c as keyof typeof p.categories];
+---
+<PageHead title={p.title} lead={p.lead} eyebrow={ui[lang].labName} />
+<section class="section">
+  <div class="wrap">
+    {featured && (
+      <article class="card featured">
+        <span class="tag">{p.featured}</span> <span class="tag">{cat(featured.category)}</span>
+        <h2>{tr(featured.title, lang)}</h2>
+        <p class="muted">{fmtDate(featured.date, lang)}</p>
+        <p>{tr(featured.summary, lang)}</p>
+      </article>
+    )}
+    <div class="grid cols-3 list">
+      {rest.map((n) => (
+        <article class="card">
+          <span class="tag">{fmtDate(n.date, lang)}</span> <span class="tag">{cat(n.category)}</span>
+          <h3>{tr(n.title, lang)}</h3>
+          <p class="muted">{tr(n.summary, lang)}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+<style>
+  .featured { border-color: var(--brand); border-width: 2px; padding: 2rem; }
+  .list { margin-top: 1.5rem; }
+  .tag { margin-right: .35rem; }
+  h3 { margin-top: .75rem; }
+</style>
