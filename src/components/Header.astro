@@ -1,0 +1,44 @@
+---
+import { nav, ui, type Lang } from '../i18n/ui';
+interface Props { lang: Lang; slug?: string }
+const { lang, slug = '' } = Astro.props;
+const t = ui[lang];
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const prefix = lang === 'pt' ? `${base}/pt` : base;
+const otherPrefix = lang === 'pt' ? base : `${base}/pt`;
+const switchHref = `${otherPrefix}/${slug}`.replace(/\/$/, '') + (slug ? '/' : '/');
+---
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href={`${prefix}/`}>{t.labName}</a>
+    <nav aria-label="Main">
+      <ul>
+        {nav.map((item) => (
+          <li><a href={`${prefix}/${item.slug}/`} aria-current={slug === item.slug ? 'page' : undefined}>{item[lang]}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <a class="lang" href={switchHref} lang={lang === 'en' ? 'pt' : 'en'} hreflang={lang === 'en' ? 'pt' : 'en'} aria-label={t.otherLangLabel}>
+      <span class:list={[lang === 'en' && 'on']}>EN</span> | <span class:list={[lang === 'pt' && 'on']}>PT</span>
+    </a>
+  </div>
+</header>
+<style>
+  .site-header { position: sticky; top: 0; z-index: 5; background: rgba(255,255,255,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .bar { display: flex; align-items: center; gap: 1.5rem; min-height: 64px; flex-wrap: wrap; }
+  .brand { font-family: var(--font-head); font-weight: 700; font-size: 1.4rem; color: var(--brand); text-decoration: none; letter-spacing: .02em; }
+  nav { flex: 1; }
+  @media (max-width: 800px) {
+    .bar { gap: .25rem 1rem; padding-top: .5rem; padding-bottom: .5rem; }
+    .brand { order: 1; }
+    .lang { order: 2; margin-left: auto; }
+    nav { order: 3; flex-basis: 100%; }
+    ul { gap: .25rem 1rem; }
+    nav a { font-size: .95rem; }
+  }
+  ul { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; list-style: none; margin: 0; padding: 0; }
+  nav a { color: var(--ink); text-decoration: none; font-weight: 500; padding: .35rem 0; border-bottom: 2px solid transparent; transition: border-color .2s ease, color .2s ease; }
+  nav a:hover, nav a[aria-current='page'] { color: var(--brand); border-color: var(--accent); }
+  .lang { font-family: var(--font-mono); font-size: .85rem; color: var(--ink-soft); text-decoration: none; }
+  .lang .on { color: var(--brand); font-weight: 700; }
+</style>

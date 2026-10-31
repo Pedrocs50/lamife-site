@@ -1,0 +1,25 @@
+---
+import { ui, type Lang } from '../i18n/ui';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <strong>{t.labName}</strong>
+      <p class="muted">{t.labFull}</p>
+      <p class="muted">{t.footerNote}</p>
+    </div>
+    <div>
+      <strong>{t.contact}</strong>
+      <p class="muted">{t.contactPlaceholder}</p>
+    </div>
+  </div>
+</footer>
+<style>
+  .site-footer { background: var(--ink); color: #e8e7f7; padding: 3rem 0; margin-top: 0; }
+  .site-footer .wrap { display: grid; gap: 2rem; grid-template-columns: 2fr 1fr; }
+  .site-footer .muted { color: #b9b7dc; }
+  @media (max-width: 640px) { .site-footer .wrap { grid-template-columns: 1fr; } }
+</style>

@@ -13,10 +13,11 @@
 - Wireframes de baixa fidelidade feitos em 31/10/2026 (home desktop e celular, Research, Projects, Publications, News, Team, Join us).
 - Hyperframes avaliado como ferramenta opcional para vídeos, e não como base do site.
 - Licença do repositório: indefinida por enquanto, a combinar com o professor.
+- Framework: Astro (site estático). Pedro liberou seguir em 31/10/2026.
+- Base criada: layout, cabeçalho com menu de 6 itens e botão EN | PT, rodapé, Home curta com placeholders e páginas vazias para os outros 5 itens. Textos em `src/i18n/ui.ts`.
 
 ## Pendências
 
-- Confirmar o framework (Astro é a sugestão).
 - Encurtar a Home e desenhar a página de detalhe de uma linha de pesquisa.
 - Confirmar com o professor o nome do laboratório em inglês, logo ou orientações visuais do INPE, e a licença.
 - Pedir ao professor a equipe atualizada e os textos das linhas de pesquisa.
