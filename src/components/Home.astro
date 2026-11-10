@@ -83,7 +83,7 @@ const latest = [...news].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3
 </section>
 
 <style>
-  .hero { position: relative; padding: 4.5rem 0 4rem; background: linear-gradient(180deg, var(--surface), var(--bg)); overflow: hidden; }
+  .hero { position: relative; padding: 4.5rem 0 4rem; border-bottom: 1px solid var(--line); overflow: hidden; }
   .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 2rem; align-items: center; }
   .hero-art { max-width: 560px; justify-self: end; width: 100%; }
   @media (max-width: 900px) {

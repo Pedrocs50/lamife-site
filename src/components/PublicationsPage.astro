@@ -38,7 +38,7 @@ const sorted = [...publications].sort((a, b) => b.year - a.year);
   .controls { display: none; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
   :global(.js) .controls { display: flex; }
   label { display: grid; gap: .25rem; font-size: .9rem; color: var(--ink-soft); }
-  input, select { font: inherit; padding: .5rem .75rem; border: 1.5px solid var(--line); border-radius: 8px; min-width: 12rem; background: var(--bg); color: var(--ink); }
+  input, select { font: inherit; padding: .5rem .75rem; border: 1px solid var(--line); border-radius: var(--radius); min-width: 12rem; background: var(--bg); color: var(--ink); }
   .pubs { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
   .pubs h3 { margin-top: .5rem; }
   .pubs p { margin: 0; }

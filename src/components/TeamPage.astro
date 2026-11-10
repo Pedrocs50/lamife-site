@@ -48,11 +48,11 @@ const groups = Object.entries(p.roles).map(([role, label]) => ({ role, label, pe
 <style>
   .grid.cols-4 { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
   .person { text-align: center; }
-  .avatar { width: 84px; height: 84px; border-radius: 50%; margin: 0 auto 1rem; display: grid; place-items: center; background: var(--surface); color: var(--brand); font-family: var(--font-head); font-size: 2rem; border: 2px solid var(--line); }
+  .avatar { width: 84px; height: 84px; border-radius: var(--radius); margin: 0 auto 1rem; display: grid; place-items: center; background: var(--surface); color: var(--brand); font-family: var(--font-head); font-size: 2rem; border: 1px solid var(--line); }
   .person h3 { font-size: 1.05rem; }
   .person p { margin: 0 auto; font-size: .95rem; }
   .person .links { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem; margin-top: 1rem; }
-  .chip-link { font-family: var(--font-mono); font-size: .75rem; padding: .3rem .7rem; border-radius: 999px; border: 1.5px solid var(--brand); color: var(--brand); text-decoration: none; background: var(--bg); transition: background .2s ease, color .2s ease; }
+  .chip-link { font-size: .8rem; padding: .3rem .7rem; border-radius: var(--radius); border: 1px solid var(--brand); color: var(--brand); text-decoration: none; background: var(--bg); transition: background .2s ease, color .2s ease; }
   a.chip-link:hover { background: var(--brand); color: #fff; }
   .chip-link.off { border-style: dashed; border-color: var(--line); color: var(--ink-soft); opacity: .7; }
 </style>

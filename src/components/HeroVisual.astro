@@ -38,11 +38,11 @@ const [px, py] = pts.reduce((a, b) => (b[1] < a[1] ? b : a));
       <circle class:list={['star', s.accent && 'warm']} cx={s.x.toFixed(1)} cy={s.y.toFixed(1)} r={s.r.toFixed(2)} style={`--o:${s.o.toFixed(2)};--d:${s.d}s`} />
     ))}
   </g>
-  <rect class="panel" x="40" y="130" width="496" height="214" rx="14" />
+  <rect class="panel" x="40" y="130" width="496" height="214" rx="2" />
   <g class="grid" aria-hidden="true">
     {[170, 210, 250, 290, 330].map((y) => <line x1="56" x2="520" y1={y} y2={y} />)}
   </g>
-  <rect class="xai" x={px - 26} y="142" width="52" height="190" rx="6" />
+  <rect class="xai" x={px - 26} y="142" width="52" height="190" rx="2" />
   <path class="signal" d={path} pathLength="1" />
   <g class="marker" transform={`translate(${px.toFixed(1)} ${py.toFixed(1)})`}>
     <circle class="ring" r="6" /><circle class="ring r2" r="6" /><circle class="dot" r="5.5" />

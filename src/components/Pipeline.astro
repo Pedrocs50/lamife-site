@@ -23,7 +23,7 @@ const f = t.flow;
 <style>
   .flow { display: grid; grid-template-columns: 1.15fr auto .9fr auto .8fr; align-items: center; gap: 1rem; margin-top: 2.5rem; }
   .col { display: grid; gap: .5rem; }
-  .node { border: 1.5px solid var(--line); border-radius: 12px; padding: .9rem 1.1rem; background: var(--bg); }
+  .node { border: 1px solid var(--line); border-radius: var(--radius); padding: .9rem 1.1rem; background: var(--bg); }
   .node strong { display: block; font-family: var(--font-head); font-size: 1.05rem; }
   .node span:not(.n) { display: block; font-size: .85rem; color: var(--ink-soft); line-height: 1.4; margin-top: .2rem; }
   .data { border-color: var(--brand); }
@@ -34,7 +34,7 @@ const f = t.flow;
   .xai span:not(.n) { color: #dedcf7; }
   .steps { list-style: none; margin: 0; padding: 0; position: relative; }
   .step { display: flex; align-items: center; gap: .7rem; font-family: var(--font-head); font-weight: 600; padding: .6rem .9rem; }
-  .step .n { display: grid; place-items: center; width: 1.7rem; height: 1.7rem; flex: none; border-radius: 50%; background: var(--accent); color: #fff; font-size: .85rem; }
+  .step .n { display: grid; place-items: center; width: 1.7rem; height: 1.7rem; flex: none; border-radius: var(--radius); background: var(--accent); color: #fff; font-size: .85rem; }
   .link { position: relative; width: 38px; height: 2px; background: var(--brand); border-radius: 2px; }
   .link::after { content: ''; position: absolute; right: -1px; top: -4px; border: 5px solid transparent; border-left: 8px solid var(--brand); border-right: 0; }
 

@@ -36,8 +36,8 @@ Alternativas consideradas e deixadas de lado: Violeta sideral (topo escuro, seç
 
 | Uso | Fonte |
 |---|---|
-| Títulos | Space Grotesk |
-| Corpo do texto | Inter |
+| Títulos | Newsreader (serifa) |
+| Corpo do texto | IBM Plex Sans |
 | Etiquetas, tags e código | IBM Plex Mono |
 
 Todas gratuitas no Google Fonts, com licença aberta. Corpo de texto entre 17 e 18 px, linhas de 65 a 75 caracteres. Se for preciso um tom mais acadêmico, trocar os títulos por uma fonte com serifa.
@@ -68,3 +68,13 @@ Regras para qualquer efeito:
 ## Hyperframes
 
 Framework de código aberto (Apache 2.0) que gera vídeo MP4 a partir de HTML, CSS e animações. Entra como ferramenta opcional para vídeos explicativos, resumos de artigos e cards para redes sociais, e não como base do site.
+
+
+## Ajuste de 10/11/2026
+
+- Fontes trocadas para Newsreader (títulos) e IBM Plex Sans (corpo).
+- Cantos quase retos (2 px) em botões, cartões, etiquetas e quadro do gráfico; linhas finas no lugar de sombras.
+- Degradê do topo removido; o topo e os cabeçalhos de página usam fundo branco e uma linha fina.
+- Segundo botão do topo virou link sublinhado.
+- Rótulos sem caixa-alta e sem fonte mono; revelação ao rolar só com fade.
+- Constelação do topo mantida.
