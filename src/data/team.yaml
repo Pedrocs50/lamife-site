@@ -16,27 +16,39 @@
 - name: Reinaldo Roberto Rosa
   role: supervisor
   unit: INPE / COPDT
+  links:
+    lattes: http://lattes.cnpq.br/2840176439889517
 - name: Eduardo dos Santos Pereira
   role: researcher
   unit: COPDT
 - name: Stephan Stephany
   role: researcher
   unit: COPDT
+  links:
+    lattes: http://lattes.cnpq.br/1446664587151293
 - name: André Martinon
   role: researcher
   unit: COPDT
+  links:
+    lattes: http://lattes.cnpq.br/2885508157298419
 - name: Nilson Sant'Anna
   role: researcher
   unit: COPDT
 - name: Francisco Carlos Rocha Fernandes
   role: researcher
   unit: DIAST
+  links:
+    lattes: http://lattes.cnpq.br/7596835543262001
 - name: José Roberto Cecatto
   role: researcher
   unit: DIAST
+  links:
+    lattes: http://lattes.cnpq.br/6513046926936437
 - name: Luan Orion Baraúna
   role: postdoc
   unit: DIAST
+  links:
+    lattes: http://lattes.cnpq.br/2798762816398291
 - name: Mariana Rubet
   role: postdoc
   unit: COPDT
@@ -46,9 +58,15 @@
 - name: Carlos Falandes
   role: masters
   unit: CAP
+  links:
+    lattes: http://lattes.cnpq.br/3579183651868833
 - name: Salatiel Jordão
   role: masters
   unit: CAP
+  links:
+    lattes: http://lattes.cnpq.br/4730895962906475
 - name: Andressa Ferreira
   role: undergrad
   unit: PIBIC-INPE
+  links:
+    lattes: http://lattes.cnpq.br/4543497200694340
