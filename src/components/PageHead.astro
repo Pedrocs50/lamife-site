@@ -17,6 +17,8 @@ const { title, lead, eyebrow, accent } = Astro.props;
   .head-grid.has-aside { display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; }
   .lead { font-size: 1.2rem; color: var(--ink-soft); margin: 0; }
   .aside { color: var(--c, var(--brand)); }
+  .aside { width: min(440px, 40vw); }
   .aside :global(.line-icon) { width: 120px; height: 120px; stroke-width: 1.6; }
+  @media (max-width: 800px) { .aside { width: 100%; max-width: 440px; } }
   @media (max-width: 640px) { .head-grid.has-aside { grid-template-columns: 1fr; } .aside :global(.line-icon) { width: 72px; height: 72px; } }
 </style>

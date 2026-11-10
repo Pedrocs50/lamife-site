@@ -78,3 +78,5 @@ Framework de código aberto (Apache 2.0) que gera vídeo MP4 a partir de HTML, C
 - Segundo botão do topo virou link sublinhado.
 - Rótulos sem caixa-alta e sem fonte mono; revelação ao rolar só com fade.
 - Constelação do topo mantida.
+
+- Páginas de linha de pesquisa: cada uma ganhou uma animação própria no topo (Sol e frente de onda até a Terra; chuva e nível da água; plasma instável no tokamak; batimentos com uma batida irregular). Componente: src/components/LineVisual.astro.
