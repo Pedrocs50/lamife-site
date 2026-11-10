@@ -2,7 +2,7 @@
 
 Website of **LAMIFE**, the Interpretable Machine Learning Laboratory for Physics of Extreme Events at INPE (Brazil's National Institute for Space Research).
 
-> Status: planning and wireframes. Everything in this repository is placeholder content. No real personal data (names, photos, contacts) is published here until the people involved agree.
+> Status: first version built (Astro). Content is a draft until the lab supervisor approves it. Photos, contacts and personal links are added only with each person's agreement.
 
 ## About the project
 
@@ -19,7 +19,9 @@ The goal is a clear, bilingual site that lets people who have never heard of the
 ## Repository layout
 
 ```
-docs/    planning documents (site map, content model, design, decisions, references)
+docs/            planning documents (site map, content model, design, decisions, references)
+src/data/team.yaml      team members (edit this to add a person)
+src/data/projects.yaml  projects (edit this to add a project)
 ```
 
 Source code will be added once the framework is confirmed.

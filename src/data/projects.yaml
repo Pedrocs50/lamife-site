@@ -1,0 +1,53 @@
+# Projetos e colaborações do LAMIFE. Para adicionar um projeto, copie um bloco "- title:" e preencha.
+#
+# title, summary: precisam de "en" (inglês). "pt" (português) é opcional; sem ele o site mostra o inglês.
+# line (linha de pesquisa), uma destas: space-physics, environmental-physics, energy, health
+#   ou deixe "" se o projeto não pertence a uma linha só.
+# status: active (em andamento) ou finished (concluído)
+# href: link do projeto, ou "" se não houver.
+
+- title:
+    en: Space-weather monitoring and forecasting (EMBRACE)
+    pt: Monitoramento e previsão do clima espacial (EMBRACE)
+  line: space-physics
+  status: active
+  href: https://www2.inpe.br/climaespacial/portal/pt/
+  summary:
+    en: Interpretable anomaly detection that supports the Brazilian Space Weather Study and Monitoring Program run by INPE.
+    pt: Detecção interpretável de anomalias que apoia o Programa de Estudo e Monitoramento Brasileiro de Clima Espacial, do INPE.
+- title:
+    en: Brokers for astrophysical transients (ISSC-LSST)
+    pt: Brokers para transientes astrofísicos (ISSC-LSST)
+  line: space-physics
+  status: active
+  href: https://issc.science.lsst.org/
+  summary:
+    en: Development of brokers for transient astrophysical events, with active participation in the ISSC-LSST consortium.
+    pt: Desenvolvimento de brokers para eventos astrofísicos transientes, com participação ativa no consórcio ISSC-LSST.
+- title:
+    en: Radio astronomy (DIAST-INPE and BRICS-Astronomy)
+    pt: Radioastronomia (DIAST-INPE e BRICS-Astronomy)
+  line: space-physics
+  status: active
+  href: https://www.bricsastronomy.org/
+  summary:
+    en: Participation in radio-astronomy initiatives of INPE's Astrophysics Division and of the BRICS Astronomy collaboration.
+    pt: Participação em iniciativas de radioastronomia da Divisão de Astrofísica do INPE e da colaboração BRICS-Astronomy.
+- title:
+    en: Plasma disruption modeling (ITER context)
+    pt: Modelagem de disrupções de plasma (contexto ITER)
+  line: energy
+  status: active
+  href: https://www.iter.org/
+  summary:
+    en: Prediction of disruptions in tokamak plasmas in the context of the international ITER programme.
+    pt: Previsão de disrupções em plasmas de tokamak no contexto do programa internacional ITER.
+- title:
+    en: FAPESP Thematic Projects
+    pt: Projetos Temáticos da FAPESP
+  line: ''
+  status: active
+  href: ''
+  summary:
+    en: The lab takes part in two FAPESP Thematic Projects (processes 2025/03076-5 and 2025/11753-7).
+    pt: O laboratório integra dois Projetos Temáticos da FAPESP (processos 2025/03076-5 e 2025/11753-7).

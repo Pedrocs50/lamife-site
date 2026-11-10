@@ -1,6 +1,6 @@
 # Modelo de conteúdo
 
-Cada tipo de conteúdo vira um arquivo de dados (Markdown com cabeçalho YAML, ou YAML/JSON). Esse modelo serve ao site agora e ao futuro painel `/admin`, que vai gerar um formulário para cada tipo.
+Cada tipo de conteúdo vira um arquivo de dados (Markdown com cabeçalho YAML, ou YAML/JSON). Hoje a equipe fica em `src/data/team.yaml` e os projetos em `src/data/projects.yaml`. Esse modelo serve ao site agora e ao futuro painel `/admin`, que vai gerar um formulário para cada tipo.
 
 ## Regras gerais
 
@@ -26,3 +26,9 @@ Cada tipo de conteúdo vira um arquivo de dados (Markdown com cabeçalho YAML, o
 Publicações, projetos, ferramentas e pessoas apontam para uma linha de pesquisa. Assim a página de cada linha lista automaticamente o que está ligado a ela, sem edição manual.
 
 Para publicações, guardar título, autores, DOI e link. Evitar subir o PDF da editora para o repositório, por causa de direitos autorais e de tamanho de arquivo.
+
+## Como adicionar
+
+- **Pessoa:** abra `src/data/team.yaml`, copie um bloco `- name:` e preencha nome, função (`role`), unidade e, se a pessoa concordar, os links.
+- **Projeto:** abra `src/data/projects.yaml`, copie um bloco `- title:` e preencha título e resumo (inglês obrigatório, português opcional), linha de pesquisa, situação e link.
+- Os comentários no começo de cada arquivo listam os valores aceitos. Se algo estiver errado, o build para e diz o arquivo, o item e o motivo.

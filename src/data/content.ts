@@ -2,6 +2,9 @@
 // English is required in every text field; Portuguese is optional and falls back to English.
 // Texts are written for this site from facts published by INPE and from the lab poster; they are drafts until the supervisor approves them.
 import type { Lang } from '../i18n/ui';
+import { loadTeam, loadProjects } from './load';
+import teamText from './team.yaml?raw';
+import projectsText from './projects.yaml?raw';
 
 export type L = { en: string; pt?: string };
 export const tr = (v: L, lang: Lang) => v[lang] ?? v.en;
@@ -77,33 +80,7 @@ export const researchLines = [
   },
 ];
 
-export const projects = [
-  {
-    title: { en: 'Space-weather monitoring and forecasting (EMBRACE)', pt: 'Monitoramento e previsão do clima espacial (EMBRACE)' },
-    line: 'space-physics', status: 'active', href: 'https://www2.inpe.br/climaespacial/portal/pt/',
-    summary: { en: 'Interpretable anomaly detection that supports the Brazilian Space Weather Study and Monitoring Program run by INPE.', pt: 'Detecção interpretável de anomalias que apoia o Programa de Estudo e Monitoramento Brasileiro de Clima Espacial, do INPE.' },
-  },
-  {
-    title: { en: 'Brokers for astrophysical transients (ISSC-LSST)', pt: 'Brokers para transientes astrofísicos (ISSC-LSST)' },
-    line: 'space-physics', status: 'active', href: 'https://issc.science.lsst.org/',
-    summary: { en: 'Development of brokers for transient astrophysical events, with active participation in the ISSC-LSST consortium.', pt: 'Desenvolvimento de brokers para eventos astrofísicos transientes, com participação ativa no consórcio ISSC-LSST.' },
-  },
-  {
-    title: { en: 'Radio astronomy (DIAST-INPE and BRICS-Astronomy)', pt: 'Radioastronomia (DIAST-INPE e BRICS-Astronomy)' },
-    line: 'space-physics', status: 'active', href: 'https://www.bricsastronomy.org/',
-    summary: { en: 'Participation in radio-astronomy initiatives of INPE\'s Astrophysics Division and of the BRICS Astronomy collaboration.', pt: 'Participação em iniciativas de radioastronomia da Divisão de Astrofísica do INPE e da colaboração BRICS-Astronomy.' },
-  },
-  {
-    title: { en: 'Plasma disruption modeling (ITER context)', pt: 'Modelagem de disrupções de plasma (contexto ITER)' },
-    line: 'energy', status: 'active', href: 'https://www.iter.org/',
-    summary: { en: 'Prediction of disruptions in tokamak plasmas in the context of the international ITER programme.', pt: 'Previsão de disrupções em plasmas de tokamak no contexto do programa internacional ITER.' },
-  },
-  {
-    title: { en: 'FAPESP Thematic Projects', pt: 'Projetos Temáticos da FAPESP' },
-    line: '', status: 'active', href: '',
-    summary: { en: 'The lab takes part in two FAPESP Thematic Projects (processes 2025/03076-5 and 2025/11753-7).', pt: 'O laboratório integra dois Projetos Temáticos da FAPESP (processos 2025/03076-5 e 2025/11753-7).' },
-  },
-];
+// Projects live in src/data/projects.yaml.
 
 export const funding = ['FAPESP', 'CNPq', 'FINEP'];
 
@@ -150,26 +127,8 @@ export const news = [
     summary: { en: '[Short summary.]', pt: '[Resumo curto.]' }, featured: false },
 ];
 
-// Names and roles come from INPE's public lab page and the lab poster. No photos or contacts.
-// Optional per person: links: { lattes, linkedin, orcid, github, email }. Example:
-//   { name: '...', role: '...', unit: '...', links: { lattes: 'http://lattes.cnpq.br/0000000000000000', email: 'name@inpe.br' } }
-// Add a link only with the person's agreement. A button only shows when its link is filled in.
-export type Links = { lattes?: string; linkedin?: string; orcid?: string; github?: string; email?: string };
-export const team: { name: string; role: string; unit: string; links?: Links }[] = [
-  { name: 'Reinaldo Roberto Rosa', role: 'supervisor', unit: 'INPE / COPDT' },
-  { name: 'Eduardo dos Santos Pereira', role: 'researcher', unit: 'COPDT' },
-  { name: 'Stephan Stephany', role: 'researcher', unit: 'COPDT' },
-  { name: 'André Martinon', role: 'researcher', unit: 'COPDT' },
-  { name: 'Nilson Sant\'Anna', role: 'researcher', unit: 'COPDT' },
-  { name: 'Francisco Carlos Rocha Fernandes', role: 'researcher', unit: 'DIAST' },
-  { name: 'José Roberto Cecatto', role: 'researcher', unit: 'DIAST' },
-  { name: 'Luan Orion Baraúna', role: 'postdoc', unit: 'DIAST' },
-  { name: 'Mariana Rubet', role: 'postdoc', unit: 'COPDT' },
-  { name: 'Fernando de Oliveira Pereira', role: 'phd', unit: 'CAP' },
-  { name: 'Carlos Falandes', role: 'masters', unit: 'CAP' },
-  { name: 'Salatiel Jordão', role: 'masters', unit: 'CAP' },
-  { name: 'Andressa Ferreira', role: 'undergrad', unit: 'PIBIC-INPE' },
-];
+// The team lives in src/data/team.yaml (names and roles come from INPE's public lab page and the lab poster).
+
 
 export const opportunities = [
   { level: 'masters', description: { en: 'Master\'s research through INPE\'s Applied Computing graduate programme (CAP). [Details on openings to be provided.]', pt: 'Pesquisa de mestrado pelo Programa de Pós-Graduação em Computação Aplicada do INPE (CAP). [Detalhes sobre vagas a serem fornecidos.]' } },
@@ -179,3 +138,6 @@ export const opportunities = [
 ];
 
 export const capHref = 'https://www.gov.br/inpe/pt-br/area-conhecimento/posgraduacao/cap';
+
+export const team = loadTeam('team.yaml', teamText);
+export const projects = loadProjects('projects.yaml', projectsText, researchLines.map((l) => l.slug));

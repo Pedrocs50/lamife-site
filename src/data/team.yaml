@@ -1,0 +1,54 @@
+# Equipe do LAMIFE. Para adicionar uma pessoa, copie um bloco "- name:" e preencha.
+#
+# role (função), uma destas: supervisor, researcher, postdoc, phd, masters, undergrad, external
+# unit (instituição ou unidade): texto livre, por exemplo COPDT, DIAST, CAP
+# links (opcional): lattes, linkedin, orcid, github, email. Só preencha com a concordância da pessoa.
+#   Cada botão só aparece no site se o link existir.
+#
+# Exemplo completo:
+#   - name: Nome Sobrenome
+#     role: masters
+#     unit: CAP
+#     links:
+#       lattes: http://lattes.cnpq.br/0000000000000000
+#       email: nome@inpe.br
+
+- name: Reinaldo Roberto Rosa
+  role: supervisor
+  unit: INPE / COPDT
+- name: Eduardo dos Santos Pereira
+  role: researcher
+  unit: COPDT
+- name: Stephan Stephany
+  role: researcher
+  unit: COPDT
+- name: André Martinon
+  role: researcher
+  unit: COPDT
+- name: Nilson Sant'Anna
+  role: researcher
+  unit: COPDT
+- name: Francisco Carlos Rocha Fernandes
+  role: researcher
+  unit: DIAST
+- name: José Roberto Cecatto
+  role: researcher
+  unit: DIAST
+- name: Luan Orion Baraúna
+  role: postdoc
+  unit: DIAST
+- name: Mariana Rubet
+  role: postdoc
+  unit: COPDT
+- name: Fernando de Oliveira Pereira
+  role: phd
+  unit: CAP
+- name: Carlos Falandes
+  role: masters
+  unit: CAP
+- name: Salatiel Jordão
+  role: masters
+  unit: CAP
+- name: Andressa Ferreira
+  role: undergrad
+  unit: PIBIC-INPE

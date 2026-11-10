@@ -36,7 +36,7 @@ const groups = Object.entries(p.roles).map(([role, label]) => ({ role, label, pe
               <p class="links">
                 {buttons(m.links).map((b) => b.url
                   ? <a class="chip-link" href={b.url} rel="noopener" target={b.key === 'email' ? undefined : '_blank'} aria-label={`${b.label}: ${m.name}`}>{b.label}</a>
-                  : <span class="chip-link off" aria-hidden="true" title="Add the link in src/data/content.ts">{b.label}</span>)}
+                  : <span class="chip-link off" aria-hidden="true" title="Add the link in src/data/team.yaml">{b.label}</span>)}
               </p>
             )}
           </article>
